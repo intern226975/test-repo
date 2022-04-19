@@ -12,4 +12,6 @@ class MainController {
         model.addAttribute("title", "test");
         return "index"
     }
+
+    //test
 }
