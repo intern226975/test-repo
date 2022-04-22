@@ -45,6 +45,7 @@ jobs:
     - name: Make zip file
       run: zip -r -qq -j ./pinky-webservice.zip ./deploy
 
+
     # S3 Bucket으로 copy
     - name: Deliver to AWS S3
       env:        
