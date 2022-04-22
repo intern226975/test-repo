@@ -53,3 +53,11 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run:
         aws s3 cp --region ap-northeast-2 --acl private ./pinky-webservice.zip s3://pinky-bucket/
+
+    # Deploy
+    - name: Deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: 
+        aws deploy create-deployment  --application-name pinky-deploy --deployment-group-name pinky-deploy --file-exists-behavior OVERWRITE s3-location bucket=pinky-bucket,bundleType=zip,key=pinky-webservice.zip --region ap-northeast-2
